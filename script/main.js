@@ -1,12 +1,13 @@
+
 // ================================
 // GameHub - main.js
 // ================================
 
-// GIỮ NGUYÊN API KEY CŨ CỦA BẠN
+// GIU NGUYEN API KEY CU CUA BAN
 const RAWG_API_KEY = "c27f4154b723451bbdb76e3c3d2a0ceb";
 
 // ================================
-// CẤU HÌNH
+// CAU HINH
 // ================================
 
 const TOP_GAMES = [
@@ -20,7 +21,7 @@ const TOP_GAMES = [
 const API_URL = "https://api.rawg.io/api/games";
 
 // ================================
-// BIẾN
+// BIEN
 // ================================
 
 let topGames = [];
@@ -28,17 +29,19 @@ let currentSlide = 0;
 let autoSlide;
 
 // ================================
-// GỌI RAWG API
+// GOI RAWG API
 // ================================
 
 async function getGame(gameName) {
+
     try {
+
         const response = await fetch(
             `${API_URL}?key=${RAWG_API_KEY}&search=${encodeURIComponent(gameName)}&page_size=5`
         );
 
         if (!response.ok) {
-            throw new Error("RAWG API lỗi");
+            throw new Error("RAWG API loi");
         }
 
         const data = await response.json();
@@ -47,15 +50,21 @@ async function getGame(gameName) {
             return null;
         }
 
-        // Tìm game có tên gần giống nhất
         const exactGame = data.results.find(
-            game => game.name.toLowerCase() === gameName.toLowerCase()
+            game =>
+                game.name.toLowerCase() ===
+                gameName.toLowerCase()
         );
 
         return exactGame || data.results[0];
 
     } catch (error) {
-        console.error(`Không thể lấy ${gameName}:`, error);
+
+        console.error(
+            `Khong the lay ${gameName}:`,
+            error
+        );
+
         return null;
     }
 }
@@ -66,19 +75,21 @@ async function getGame(gameName) {
 
 async function loadTopGames() {
 
-    const container = document.getElementById("topGames");
+    const container =
+        document.getElementById("topGames");
 
     if (!container) return;
 
     container.innerHTML = `
         <div class="loading">
-            Đang tải game...
+            Dang tai game...
         </div>
     `;
 
     const results = [];
 
     for (const gameName of TOP_GAMES) {
+
         const game = await getGame(gameName);
 
         if (game) {
@@ -89,39 +100,47 @@ async function loadTopGames() {
     topGames = results;
 
     renderTopGames();
+
     setupHero();
 }
 
 // ================================
-// HIỂN THỊ CARD TOP 5
+// HIEN THI CARD TOP 5
 // ================================
 
 function renderTopGames() {
 
-    const container = document.getElementById("topGames");
+    const container =
+        document.getElementById("topGames");
 
     if (!container) return;
 
     if (topGames.length === 0) {
+
         container.innerHTML = `
             <p class="loading">
-                Không tải được dữ liệu game.
+                Khong tai duoc du lieu game.
             </p>
         `;
+
         return;
     }
 
     container.innerHTML = "";
 
-    topGames.forEach((game, index) => {
+    topGames.forEach(game => {
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
         card.className = "game-card";
 
         card.innerHTML = `
             <img
-                src="${game.background_image || "https://via.placeholder.com/600x350?text=No+Image"}"
+                src="${
+                    game.background_image ||
+                    "https://via.placeholder.com/600x350?text=No+Image"
+                }"
                 alt="${game.name}"
             >
 
@@ -130,28 +149,72 @@ function renderTopGames() {
                 <h3>${game.name}</h3>
 
                 <div class="game-card-info">
-                    <span>⭐ ${game.rating ? game.rating.toFixed(1) : "N/A"}</span>
-                    <span>${getGenres(game)}</span>
+
+                    <span>
+                        ⭐ ${
+                            game.rating
+                                ? game.rating.toFixed(1)
+                                : "N/A"
+                        }
+                    </span>
+
+                    <span>
+                        ${getGenres(game)}
+                    </span>
+
                 </div>
+
+                <button class="view-detail-btn">
+                    View Detail
+                </button>
 
             </div>
         `;
 
+        // Click vao card
         card.addEventListener("click", () => {
-            window.location.href = `game-detail.html?id=${game.id}`;
+
+            window.location.href =
+                `game-detail.html?id=${game.id}`;
+
         });
 
+        // Click nut View Detail
+        const detailButton =
+            card.querySelector(".view-detail-btn");
+
+        if (detailButton) {
+
+            detailButton.addEventListener(
+                "click",
+                event => {
+
+                    // Khong cho click card chay them lan nua
+                    event.stopPropagation();
+
+                    window.location.href =
+                        `game-detail.html?id=${game.id}`;
+
+                }
+            );
+
+        }
+
         container.appendChild(card);
+
     });
 }
 
 // ================================
-// LẤY THỂ LOẠI
+// LAY THE LOAI
 // ================================
 
 function getGenres(game) {
 
-    if (!game.genres || game.genres.length === 0) {
+    if (
+        !game.genres ||
+        game.genres.length === 0
+    ) {
         return "Game";
     }
 
@@ -179,7 +242,7 @@ function setupHero() {
 }
 
 // ================================
-// HIỂN THỊ HERO
+// HIEN THI HERO
 // ================================
 
 function showHero(index) {
@@ -188,16 +251,27 @@ function showHero(index) {
 
     const game = topGames[index];
 
-    const heroImage = document.getElementById("heroImage");
-    const heroTitle = document.getElementById("heroTitle");
-    const heroRating = document.getElementById("heroRating");
-    const heroGenre = document.getElementById("heroGenre");
-    const heroDescription = document.getElementById("heroDescription");
+    const heroImage =
+        document.getElementById("heroImage");
+
+    const heroTitle =
+        document.getElementById("heroTitle");
+
+    const heroRating =
+        document.getElementById("heroRating");
+
+    const heroGenre =
+        document.getElementById("heroGenre");
+
+    const heroDescription =
+        document.getElementById("heroDescription");
 
     if (heroImage) {
+
         heroImage.src =
             game.background_image ||
             "https://via.placeholder.com/1200x600?text=No+Image";
+
     }
 
     if (heroTitle) {
@@ -205,21 +279,26 @@ function showHero(index) {
     }
 
     if (heroRating) {
+
         heroRating.textContent =
-            `⭐ ${game.rating ? game.rating.toFixed(1) : "N/A"}`;
+            `⭐ ${
+                game.rating
+                    ? game.rating.toFixed(1)
+                    : "N/A"
+            }`;
+
     }
 
     if (heroGenre) {
-        heroGenre.textContent = getGenres(game);
+        heroGenre.textContent =
+            getGenres(game);
     }
 
     if (heroDescription) {
 
-        let description =
-            game.name +
-            " is a popular game available on GameHub.";
+        heroDescription.textContent =
+            `${game.name} is a popular game available on GameHub.`;
 
-        heroDescription.textContent = description;
     }
 
     updateDots();
@@ -231,7 +310,8 @@ function showHero(index) {
 
 function createDots() {
 
-    const dotsContainer = document.getElementById("dots");
+    const dotsContainer =
+        document.getElementById("dots");
 
     if (!dotsContainer) return;
 
@@ -239,7 +319,8 @@ function createDots() {
 
     topGames.forEach((game, index) => {
 
-        const dot = document.createElement("button");
+        const dot =
+            document.createElement("button");
 
         dot.className = "dot";
 
@@ -248,18 +329,26 @@ function createDots() {
         }
 
         dot.addEventListener("click", () => {
+
             currentSlide = index;
+
             showHero(currentSlide);
+
             restartAutoSlide();
+
         });
 
         dotsContainer.appendChild(dot);
+
     });
 }
 
 function updateDots() {
 
-    const dots = document.querySelectorAll("#dots .dot");
+    const dots =
+        document.querySelectorAll(
+            "#dots .dot"
+        );
 
     dots.forEach((dot, index) => {
 
@@ -286,6 +375,7 @@ function nextSlide() {
     }
 
     showHero(currentSlide);
+
     restartAutoSlide();
 }
 
@@ -300,6 +390,7 @@ function previousSlide() {
     }
 
     showHero(currentSlide);
+
     restartAutoSlide();
 }
 
@@ -325,7 +416,6 @@ function startAutoSlide() {
 }
 
 function restartAutoSlide() {
-
     startAutoSlide();
 }
 
@@ -335,13 +425,14 @@ function restartAutoSlide() {
 
 async function loadCategory(category) {
 
-    const container = document.getElementById("categoryGames");
+    const container =
+        document.getElementById("categoryGames");
 
     if (!container) return;
 
     container.innerHTML = `
         <div class="loading">
-            Đang tải ${category}...
+            Dang tai ${category}...
         </div>
     `;
 
@@ -352,18 +443,24 @@ async function loadCategory(category) {
         );
 
         if (!response.ok) {
-            throw new Error("Không thể tải category");
+            throw new Error(
+                "Khong the tai category"
+            );
         }
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
         container.innerHTML = "";
 
-        if (!data.results || data.results.length === 0) {
+        if (
+            !data.results ||
+            data.results.length === 0
+        ) {
 
             container.innerHTML = `
                 <p class="loading">
-                    Không tìm thấy game.
+                    Khong tim thay game.
                 </p>
             `;
 
@@ -372,13 +469,17 @@ async function loadCategory(category) {
 
         data.results.forEach(game => {
 
-            const card = document.createElement("div");
+            const card =
+                document.createElement("div");
 
             card.className = "game-card";
 
             card.innerHTML = `
                 <img
-                    src="${game.background_image || "https://via.placeholder.com/600x350?text=No+Image"}"
+                    src="${
+                        game.background_image ||
+                        "https://via.placeholder.com/600x350?text=No+Image"
+                    }"
                     alt="${game.name}"
                 >
 
@@ -387,23 +488,63 @@ async function loadCategory(category) {
                     <h3>${game.name}</h3>
 
                     <div class="game-card-info">
+
                         <span>
-                            ⭐ ${game.rating ? game.rating.toFixed(1) : "N/A"}
+                            ⭐ ${
+                                game.rating
+                                    ? game.rating.toFixed(1)
+                                    : "N/A"
+                            }
                         </span>
 
                         <span>
                             ${getGenres(game)}
                         </span>
+
                     </div>
+
+                    <button class="view-detail-btn">
+                        View Detail
+                    </button>
 
                 </div>
             `;
 
-            card.addEventListener("click", () => {
-                window.location.href = `game-detail.html?id=${game.id}`;
-            });
+            // Click vao card
+            card.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        `game-detail.html?id=${game.id}`;
+
+                }
+            );
+
+            // Click nut View Detail
+            const detailButton =
+                card.querySelector(
+                    ".view-detail-btn"
+                );
+
+            if (detailButton) {
+
+                detailButton.addEventListener(
+                    "click",
+                    event => {
+
+                        event.stopPropagation();
+
+                        window.location.href =
+                            `game-detail.html?id=${game.id}`;
+
+                    }
+                );
+
+            }
 
             container.appendChild(card);
+
         });
 
     } catch (error) {
@@ -412,26 +553,11 @@ async function loadCategory(category) {
 
         container.innerHTML = `
             <p class="loading">
-                Có lỗi khi tải game.
+                Co loi khi tai game.
             </p>
         `;
+
     }
-}
-
-// ================================
-// GAME INFO
-// ================================
-
-function showGameInfo(game) {
-
-    const genres = getGenres(game);
-
-    alert(
-        `${game.name}\n\n` +
-        `⭐ Rating: ${game.rating || "N/A"}\n` +
-        `🎮 Genre: ${genres}\n` +
-        `📅 Release: ${game.released || "N/A"}`
-    );
 }
 
 // ================================
@@ -440,14 +566,24 @@ function showGameInfo(game) {
 
 function setupSearch() {
 
-    const searchInput = document.getElementById("searchInput");
-    const searchBtn = document.getElementById("searchBtn");
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
 
-    if (!searchInput || !searchBtn) return;
+    const searchBtn =
+        document.getElementById(
+            "searchBtn"
+        );
+
+    if (!searchInput || !searchBtn) {
+        return;
+    }
 
     function searchGame() {
 
-        const query = searchInput.value.trim();
+        const query =
+            searchInput.value.trim();
 
         if (!query) {
             return;
@@ -455,46 +591,77 @@ function setupSearch() {
 
         window.location.href =
             `search.html?query=${encodeURIComponent(query)}`;
+
     }
 
-    searchBtn.addEventListener("click", searchGame);
+    searchBtn.addEventListener(
+        "click",
+        searchGame
+    );
 
-    searchInput.addEventListener("keydown", event => {
+    searchInput.addEventListener(
+        "keydown",
+        event => {
 
-        if (event.key === "Enter") {
-            searchGame();
+            if (event.key === "Enter") {
+                searchGame();
+            }
+
         }
-
-    });
+    );
 }
 
 // ================================
-// NÚT HERO
+// NUT HERO
 // ================================
 
 function setupButtons() {
 
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-    const detailsBtn = document.getElementById("detailsBtn");
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+    const prevBtn =
+        document.getElementById("prevBtn");
+
+    const detailsBtn =
+        document.getElementById("detailsBtn");
 
     if (nextBtn) {
-        nextBtn.addEventListener("click", nextSlide);
+
+        nextBtn.addEventListener(
+            "click",
+            nextSlide
+        );
+
     }
 
     if (prevBtn) {
-        prevBtn.addEventListener("click", previousSlide);
+
+        prevBtn.addEventListener(
+            "click",
+            previousSlide
+        );
+
     }
 
     if (detailsBtn) {
 
-        detailsBtn.addEventListener("click", () => {
+        detailsBtn.addEventListener(
+            "click",
+            () => {
 
-            if (topGames.length === 0) return;
+                if (topGames.length === 0) {
+                    return;
+                }
 
-            showGameInfo(topGames[currentSlide]);
+                const game =
+                    topGames[currentSlide];
 
-        });
+                window.location.href =
+                    `game-detail.html?id=${game.id}`;
+
+            }
+        );
 
     }
 }
@@ -506,33 +673,44 @@ function setupButtons() {
 function setupCategories() {
 
     const categoryButtons =
-        document.querySelectorAll(".category-btn");
+        document.querySelectorAll(
+            ".category-btn"
+        );
 
     categoryButtons.forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            categoryButtons.forEach(btn => {
-                btn.classList.remove("active");
-            });
+                categoryButtons.forEach(btn => {
 
-            button.classList.add("active");
+                    btn.classList.remove(
+                        "active"
+                    );
 
-            const category =
-                button.dataset.category;
+                });
 
-            if (category) {
-                loadCategory(category);
+                button.classList.add("active");
+
+                const category =
+                    button.dataset.category;
+
+                if (category) {
+                    loadCategory(category);
+                }
+
             }
-
-        });
+        );
 
     });
 
-    // Load Action mặc định
+    // Load category dau tien
     if (categoryButtons.length > 0) {
 
-        categoryButtons[0].classList.add("active");
+        categoryButtons[0].classList.add(
+            "active"
+        );
 
         const firstCategory =
             categoryButtons[0].dataset.category;
@@ -540,21 +718,29 @@ function setupCategories() {
         if (firstCategory) {
             loadCategory(firstCategory);
         }
+
     }
 }
 
 // ================================
-// KHỞI ĐỘNG WEBSITE
+// KHOI DONG WEBSITE
 // ================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    console.log("GameHub đang khởi động...");
+        console.log(
+            "GameHub dang khoi dong..."
+        );
 
-    setupSearch();
-    setupButtons();
-    setupCategories();
+        setupSearch();
 
-    loadTopGames();
+        setupButtons();
 
-});
+        setupCategories();
+
+        loadTopGames();
+
+    }
+);
