@@ -138,7 +138,7 @@ function renderTopGames() {
         `;
 
         card.addEventListener("click", () => {
-            showGameInfo(game);
+            window.location.href = `game-detail.html?id=${game.id}`;
         });
 
         container.appendChild(card);
@@ -400,7 +400,7 @@ async function loadCategory(category) {
             `;
 
             card.addEventListener("click", () => {
-                showGameInfo(game);
+                window.location.href = `game-detail.html?id=${game.id}`;
             });
 
             container.appendChild(card);

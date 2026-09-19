@@ -1,0 +1,324 @@
+/* ================================
+   GAME DETAIL PAGE
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #070707;
+    color: #ffffff;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    width: 100%;
+    height: 70px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #101010;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    color: #00e5ff;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.navbar {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.navbar a:hover {
+    color: #00e5ff;
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+.game-detail {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 0;
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
+.loading {
+    text-align: center;
+    padding: 100px 0;
+    color: #00e5ff;
+    font-size: 20px;
+}
+
+
+/* ================================
+   GAME CONTENT
+================================ */
+
+.game-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+
+/* ================================
+   GAME IMAGE
+================================ */
+
+.game-image {
+    width: 100%;
+}
+
+.game-image img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.6);
+}
+
+
+/* ================================
+   GAME INFO
+================================ */
+
+.game-info h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+
+/* ================================
+   RATING
+================================ */
+
+.game-rating {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+
+    font-size: 17px;
+}
+
+#gameRating {
+    color: #ffd700;
+}
+
+#gameMetacritic {
+    color: #aaaaaa;
+}
+
+
+/* ================================
+   INFO LIST
+================================ */
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #222;
+}
+
+.info-label {
+    color: #00e5ff;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.info-item span:last-child {
+    color: #dddddd;
+    line-height: 1.5;
+}
+
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.back-button {
+    display: inline-block;
+
+    margin-top: 30px;
+    padding: 12px 20px;
+
+    background: #151515;
+    color: #ffffff;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    background: #00e5ff;
+    color: #070707;
+    border-color: #00e5ff;
+}
+
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.description-section {
+    margin-top: 70px;
+    padding: 35px;
+
+    background: #101010;
+    border: 1px solid #222;
+    border-radius: 16px;
+}
+
+.description-section h2 {
+    margin-bottom: 20px;
+
+    color: #00e5ff;
+    font-size: 26px;
+}
+
+.description-section p {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   OFFICIAL WEBSITE
+================================ */
+
+.website-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.website-button {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    background: #00e5ff;
+    color: #070707;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.website-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 229, 255, 0.25);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 850px) {
+
+    .header {
+        padding: 0 4%;
+    }
+
+    .navbar {
+        gap: 15px;
+    }
+
+    .game-detail {
+        width: 92%;
+        padding: 40px 0;
+    }
+
+    .game-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .game-image img {
+        height: 350px;
+    }
+
+    .game-info h1 {
+        font-size: 36px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .header {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .game-image img {
+        height: 250px;
+    }
+
+    .game-info h1 {
+        font-size: 30px;
+    }
+
+    .description-section {
+        padding: 25px;
+    }
+}

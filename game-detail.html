@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Game Details - GameHub</title>
+
+    <link rel="stylesheet" href="style/game-detail.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            GameHub
+        </a>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="games.html">Games</a>
+            <a href="categories.html">Categories</a>
+            <a href="search.html">Search</a>
+        </nav>
+
+    </header>
+
+
+    <!-- GAME DETAIL -->
+    <main class="game-detail">
+
+        <div id="loading" class="loading">
+            Loading game...
+        </div>
+
+
+        <section id="gameContent" class="game-content">
+
+            <!-- ANH GAME -->
+            <div class="game-image">
+                <img id="gameImage" src="" alt="Game image">
+            </div>
+
+
+            <!-- THONG TIN GAME -->
+            <div class="game-info">
+
+                <h1 id="gameTitle">
+                    Game Name
+                </h1>
+
+                <div class="game-rating">
+
+                    <span id="gameRating">
+                        ⭐ -
+                    </span>
+
+                    <span id="gameMetacritic">
+                        Metacritic: -
+                    </span>
+
+                </div>
+
+
+                <div class="info-list">
+
+                    <div class="info-item">
+                        <span class="info-label">Genres</span>
+                        <span id="gameGenres">-</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Release</span>
+                        <span id="gameRelease">-</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Developer</span>
+                        <span id="gameDeveloper">-</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Publisher</span>
+                        <span id="gamePublisher">-</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Platforms</span>
+                        <span id="gamePlatforms">-</span>
+                    </div>
+
+                </div>
+
+
+                <a href="index.html" class="back-button">
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- MO TA -->
+        <section class="description-section">
+
+            <h2>About this game</h2>
+
+            <p id="gameDescription">
+                Loading description...
+            </p>
+
+        </section>
+
+
+        <!-- WEBSITE -->
+        <div class="website-section">
+
+            <a
+                id="gameWebsite"
+                href="#"
+                target="_blank"
+                class="website-button"
+            >
+                Official Website
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script src="script/game-detail.js"></script>
+
+</body>
+
+</html>
