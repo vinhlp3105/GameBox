@@ -1,4 +1,3 @@
-
 // ================================
 // GameHub - main.js
 // ================================
@@ -100,7 +99,6 @@ async function loadTopGames() {
     topGames = results;
 
     renderTopGames();
-
     setupHero();
 }
 
@@ -164,41 +162,32 @@ function renderTopGames() {
 
                 </div>
 
-                <button class="view-detail-btn">
+                <a
+                    href="game-detail.html?id=${game.id}"
+                    class="view-detail-btn"
+                >
                     View Detail
-                </button>
+                </a>
 
             </div>
         `;
 
         // Click vao card
-        card.addEventListener("click", () => {
+        card.addEventListener("click", event => {
+
+            // Neu click vao View Detail thi de link xu ly
+            if (
+                event.target.closest(
+                    ".view-detail-btn"
+                )
+            ) {
+                return;
+            }
 
             window.location.href =
                 `game-detail.html?id=${game.id}`;
 
         });
-
-        // Click nut View Detail
-        const detailButton =
-            card.querySelector(".view-detail-btn");
-
-        if (detailButton) {
-
-            detailButton.addEventListener(
-                "click",
-                event => {
-
-                    // Khong cho click card chay them lan nua
-                    event.stopPropagation();
-
-                    window.location.href =
-                        `game-detail.html?id=${game.id}`;
-
-                }
-            );
-
-        }
 
         container.appendChild(card);
 
@@ -346,9 +335,7 @@ function createDots() {
 function updateDots() {
 
     const dots =
-        document.querySelectorAll(
-            "#dots .dot"
-        );
+        document.querySelectorAll("#dots .dot");
 
     dots.forEach((dot, index) => {
 
@@ -503,45 +490,31 @@ async function loadCategory(category) {
 
                     </div>
 
-                    <button class="view-detail-btn">
+                    <a
+                        href="game-detail.html?id=${game.id}"
+                        class="view-detail-btn"
+                    >
                         View Detail
-                    </button>
+                    </a>
 
                 </div>
             `;
 
             // Click vao card
-            card.addEventListener(
-                "click",
-                () => {
+            card.addEventListener("click", event => {
 
-                    window.location.href =
-                        `game-detail.html?id=${game.id}`;
-
+                if (
+                    event.target.closest(
+                        ".view-detail-btn"
+                    )
+                ) {
+                    return;
                 }
-            );
 
-            // Click nut View Detail
-            const detailButton =
-                card.querySelector(
-                    ".view-detail-btn"
-                );
+                window.location.href =
+                    `game-detail.html?id=${game.id}`;
 
-            if (detailButton) {
-
-                detailButton.addEventListener(
-                    "click",
-                    event => {
-
-                        event.stopPropagation();
-
-                        window.location.href =
-                            `game-detail.html?id=${game.id}`;
-
-                    }
-                );
-
-            }
+            });
 
             container.appendChild(card);
 
@@ -567,14 +540,10 @@ async function loadCategory(category) {
 function setupSearch() {
 
     const searchInput =
-        document.getElementById(
-            "searchInput"
-        );
+        document.getElementById("searchInput");
 
     const searchBtn =
-        document.getElementById(
-            "searchBtn"
-        );
+        document.getElementById("searchBtn");
 
     if (!searchInput || !searchBtn) {
         return;
