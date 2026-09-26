@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Register</title>
+    <link rel="stylesheet" href="style/auth.css">
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>GameHub</h1>
+            <h2>Create Account</h2>
+
+            <form id="registerForm">
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Password"
+                    minlength="6"
+                    required
+                >
+
+                <button type="submit">Create Account</button>
+            </form>
+
+            <p id="authMessage"></p>
+
+            <p class="switch-page">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+            <a class="back-home" href="index.html">← Back to GameHub</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script/supabase.js"></script>
+    <script src="script/auth.js"></script>
+
+</body>
+</html>
