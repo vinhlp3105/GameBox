@@ -94,7 +94,7 @@ try {
         gamesPerPage +
         "&page=" +
         currentPage +
-        "&ordering=-rating";
+        "&ordering=-released";
 
     if (currentGenre !== "") {
         url += "&genres=" + currentGenre;

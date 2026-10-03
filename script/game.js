@@ -7,7 +7,7 @@ try {
 const url =
 "https://api.rawg.io/api/games?key=" +
 RAWG_API_KEY +
-"&page_size=24&ordering=-rating";
+"&page_size=24&ordering=-released";
 
     const response = await fetch(url);
 
