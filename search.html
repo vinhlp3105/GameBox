@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GameHub - Search</title>
+
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/game.css">
+<link rel="stylesheet" href="style/search.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+    <a href="index.html">GameHub</a>
+</div>
+
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="game.html">Games</a>
+    <a href="categories.html">Categories</a>
+    <a href="search.html" class="active">Search</a>
+</nav>
+
+<div class="auth-buttons" id="authButtons">
+    <a href="login.html" class="auth-btn login-btn">Sign In</a>
+    <a href="register.html" class="auth-btn register-btn">Sign Up</a>
+</div>
+
+</header>
+
+<main>
+
+<section class="search-page">
+
+    <div class="search-title">
+        <h1>Search Games</h1>
+        <p>Find your favorite games on GameHub</p>
+    </div>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Enter game name..."
+        >
+
+        <button id="searchBtn">
+            Search
+        </button>
+
+    </div>
+
+    <div class="search-result-title">
+        <h2 id="resultTitle">
+            Search Results
+        </h2>
+    </div>
+
+    <div id="searchGames" class="games-grid">
+        <p id="searchMessage">
+            Enter a game name to search.
+        </p>
+    </div>
+
+    <div class="pagination">
+
+        <button id="prevBtn" disabled>
+            ← Previous
+        </button>
+
+        <span id="pageNumber">
+            Page 1
+        </span>
+
+        <button id="nextBtn" disabled>
+            Next →
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer> <p>© 2026 GameHub. All rights reserved.</p> </footer>
+
+<script src="script/auth-header.js"></script>
+
+<script src="script/search.js"></script>
+
+</body> </html>

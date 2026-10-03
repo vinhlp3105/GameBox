@@ -1,0 +1,104 @@
+.search-page {
+padding: 120px 5% 60px;
+min-height: 80vh;
+}
+
+.search-title {
+margin-bottom: 30px;
+}
+
+.search-title h1 {
+color: #ffffff;
+font-size: 32px;
+margin-bottom: 8px;
+}
+
+.search-title p {
+color: #999999;
+font-size: 14px;
+}
+
+.search-box {
+display: flex;
+max-width: 700px;
+margin-bottom: 40px;
+}
+
+.search-box input {
+flex: 1;
+padding: 14px 18px;
+border: 1px solid #333333;
+border-right: none;
+border-radius: 7px 0 0 7px;
+outline: none;
+background: #151515;
+color: #ffffff;
+font-size: 15px;
+}
+
+.search-box input {
+border-color: #00e5ff;
+}
+
+.search-box input::placeholder {
+color: #777777;
+}
+
+.search-box button {
+padding: 14px 25px;
+border: none;
+border-radius: 0 7px 7px 0;
+background: #00e5ff;
+color: #000000;
+font-weight: bold;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.search-box button {
+background: #ffffff;
+}
+
+.search-result-title {
+margin-bottom: 20px;
+}
+
+.search-result-title h2 {
+color: #ffffff;
+font-size: 24px;
+}
+
+#searchGames {
+min-height: 150px;
+}
+
+#searchMessage {
+color: #999999;
+text-align: center;
+grid-column: 1 / -1;
+padding: 50px;
+}
+
+@media (max-width: 600px) {
+
+.search-page {
+    padding: 100px 4% 40px;
+}
+
+.search-title h1 {
+    font-size: 26px;
+}
+
+.search-box {
+    width: 100%;
+}
+
+.search-box input {
+    min-width: 0;
+}
+
+.search-box button {
+    padding: 14px 18px;
+}
+
+}
