@@ -1,140 +1,195 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Game Details - GameHub</title>
+<title>GameHub - Game Detail</title>
 
-    <link rel="stylesheet" href="style/game-detail.css">
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/detail.css">
+
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+<header class="header">
 
-        <a href="index.html" class="logo">
-            GameHub
-        </a>
+<div class="logo">
+    <a href="index.html">GameHub</a>
+</div>
 
-        <nav class="navbar">
-            <a href="index.html">Home</a>
-            <a href="games.html">Games</a>
-            <a href="categories.html">Categories</a>
-            <a href="search.html">Search</a>
-        </nav>
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="game.html">Games</a>
+    <a href="categories.html">Categories</a>
+    <a href="search.html">Search</a>
+</nav>
 
-    </header>
+<div class="auth-buttons" id="authButtons">
+    <a href="login.html" class="auth-btn login-btn">Sign In</a>
+    <a href="register.html" class="auth-btn register-btn">Sign Up</a>
+</div>
 
+</header>
 
-    <!-- GAME DETAIL -->
-    <main class="game-detail">
+<main>
 
-        <div id="loading" class="loading">
-            Loading game...
+<section class="detail-page">
+
+    <!-- Game Hero -->
+
+    <section class="game-hero">
+
+        <div class="game-cover">
+            <img id="gameImage" src="" alt="Game Image">
         </div>
 
+        <div class="game-main-info">
 
-        <section id="gameContent" class="game-content">
+            <h1 id="gameName">Loading...</h1>
 
-            <!-- ANH GAME -->
-            <div class="game-image">
-                <img id="gameImage" src="" alt="Game image">
+            <div class="game-rating">
+                ⭐ <span id="gameRating">N/A</span>
             </div>
 
+            <div class="game-meta">
 
-            <!-- THONG TIN GAME -->
-            <div class="game-info">
+                <p>
+                    📅 Released:
+                    <span id="gameRelease">N/A</span>
+                </p>
 
-                <h1 id="gameTitle">
-                    Game Name
-                </h1>
+                <p>
+                    🎮 Platforms:
+                    <span id="gamePlatforms">N/A</span>
+                </p>
 
-                <div class="game-rating">
+            </div>
 
-                    <span id="gameRating">
-                        ⭐ -
-                    </span>
+            <div id="gameGenres" class="game-genres"></div>
 
-                    <span id="gameMetacritic">
-                        Metacritic: -
-                    </span>
+            <p id="gameDescription" class="game-description">
+                Loading game description...
+            </p>
 
-                </div>
+            <div class="detail-buttons">
 
+                <button id="favoriteBtn" class="favorite-btn">
+                    ♡ Add to Favorites
+                </button>
 
-                <div class="info-list">
-
-                    <div class="info-item">
-                        <span class="info-label">Genres</span>
-                        <span id="gameGenres">-</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Release</span>
-                        <span id="gameRelease">-</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Developer</span>
-                        <span id="gameDeveloper">-</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Publisher</span>
-                        <span id="gamePublisher">-</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Platforms</span>
-                        <span id="gamePlatforms">-</span>
-                    </div>
-
-                </div>
-
-
-                <a href="index.html" class="back-button">
-                    ← Back to Home
+                <a
+                    id="trailerBtn"
+                    class="trailer-btn"
+                    href="#"
+                    target="_blank"
+                    style="display: none;"
+                >
+                    ▶ Trailer
                 </a>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- MO TA -->
-        <section class="description-section">
+    <!-- Game Information -->
 
-            <h2>About this game</h2>
+    <section class="game-information">
 
-            <p id="gameDescription">
-                Loading description...
-            </p>
+        <h2>Game Information</h2>
 
-        </section>
+        <div class="info-grid">
 
+            <div class="info-item">
+                <span>Developer</span>
+                <strong id="gameDeveloper">N/A</strong>
+            </div>
 
-        <!-- WEBSITE -->
-        <div class="website-section">
+            <div class="info-item">
+                <span>Publisher</span>
+                <strong id="gamePublisher">N/A</strong>
+            </div>
 
-            <a
-                id="gameWebsite"
-                href="#"
-                target="_blank"
-                class="website-button"
-            >
-                Official Website
-            </a>
+            <div class="info-item">
+                <span>Release Date</span>
+                <strong id="gameReleaseInfo">N/A</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Metacritic</span>
+                <strong id="gameMetacritic">N/A</strong>
+            </div>
 
         </div>
 
-    </main>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script/supabase.js"></script>    
-    <script src="script/game-detail.js"></script>
+
+    <!-- About -->
+
+    <section class="about-game">
+
+        <h2>About the Game</h2>
+
+        <div id="gameAbout">
+            Loading description...
+        </div>
+
+    </section>
+
+
+    <!-- Screenshots -->
+
+    <section class="screenshots-section">
+
+        <h2>Screenshots</h2>
+
+        <div id="screenshotsGrid" class="screenshots-grid">
+
+            <p id="screenshotsLoading">
+                Loading screenshots...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- More Like This -->
+
+    <section class="similar-games-section">
+
+        <h2>More Like This</h2>
+
+        <div id="similarGames" class="similar-games-grid">
+
+            <p id="similarLoading">
+                Loading games...
+            </p>
+
+        </div>
+
+    </section>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+    © 2026 GameHub. All rights reserved.
+</p>
+
+</footer>
+
+<script src="script/auth-header.js"></script>
+
+<script src="script/detail.js"></script>
 
 </body>
 
