@@ -94,14 +94,23 @@ gameRelease.textContent =
 gameReleaseInfo.textContent =
     game.released || "N/A";
 
+gamePlatforms.innerHTML = "";
+
 if (game.platforms && game.platforms.length > 0) {
 
-    gamePlatforms.textContent =
-        game.platforms
-            .map(function (item) {
-                return item.platform.name;
-            })
-            .join(" • ");
+    game.platforms.forEach(function (item) {
+
+        const tag =
+            document.createElement("span");
+
+        tag.className =
+            "platform-tag";
+
+        tag.textContent =
+            item.platform.name;
+
+        gamePlatforms.appendChild(tag);
+    });
 
 } else {
 
@@ -126,7 +135,6 @@ if (game.genres && game.genres.length > 0) {
 
         gameGenres.appendChild(tag);
     });
-
 }
 
 const description =
@@ -194,6 +202,9 @@ if (
 
     websiteButton.target =
         "_blank";
+
+    websiteButton.rel =
+        "noopener noreferrer";
 
     websiteButton.className =
         "trailer-btn";
@@ -439,6 +450,12 @@ try {
 
             trailerBtn.href =
                 trailerUrl;
+
+            trailerBtn.target =
+                "_blank";
+
+            trailerBtn.rel =
+                "noopener noreferrer";
 
             trailerBtn.style.display =
                 "inline-block";
