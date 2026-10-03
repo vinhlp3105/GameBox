@@ -472,12 +472,54 @@ try {
 
 }
 
+function getFavoritesKey() {
+
+const currentUser =
+    JSON.parse(
+        localStorage.getItem(
+            "gamebox_current_user"
+        ) || "null"
+    );
+
+if (
+    !currentUser ||
+    !currentUser.email
+) {
+
+    return null;
+}
+
+return "gamebox_favorites_" +
+    currentUser.email;
+
+}
+
 function setupFavorite(game) {
+
+const favoritesKey =
+    getFavoritesKey();
+
+if (!favoritesKey) {
+
+    favoriteBtn.textContent =
+        "♡ Sign In to Favorite";
+
+    favoriteBtn.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "login.html";
+        }
+    );
+
+    return;
+}
 
 const favorites =
     JSON.parse(
         localStorage.getItem(
-            "gamebox_favorites"
+            favoritesKey
         ) || "[]"
     );
 
@@ -500,10 +542,21 @@ favoriteBtn.addEventListener(
 
 function toggleFavorite(game) {
 
+const favoritesKey =
+    getFavoritesKey();
+
+if (!favoritesKey) {
+
+    window.location.href =
+        "login.html";
+
+    return;
+}
+
 let favorites =
     JSON.parse(
         localStorage.getItem(
-            "gamebox_favorites"
+            favoritesKey
         ) || "[]"
     );
 
@@ -522,7 +575,7 @@ if (index === -1) {
     });
 
     localStorage.setItem(
-        "gamebox_favorites",
+        favoritesKey,
         JSON.stringify(favorites)
     );
 
@@ -533,7 +586,7 @@ if (index === -1) {
     favorites.splice(index, 1);
 
     localStorage.setItem(
-        "gamebox_favorites",
+        favoritesKey,
         JSON.stringify(favorites)
     );
 
